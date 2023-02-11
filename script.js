@@ -9,7 +9,7 @@ getUserButton.addEventListener("click", function() {
     .then(data => {
       const user = data.results[0];
       fullName.innerText = user.name.first + " " + user.name.last;
-      photo.src = user.picture.large;
+      photo.src = user. picture.large;
       fullName.dataset.age = user.dob.age;
       fullName.dataset.email = user.email;
       fullName.dataset.phone = user.phone;
@@ -32,3 +32,6 @@ emailButton.addEventListener("click", function() {
 phoneButton.addEventListener("click", function() {
   additionalInfo.innerText = "Phone: " + fullName.dataset.phone;
 });
+
+// Fetch initial user data on page load
+getUserButton.click();
