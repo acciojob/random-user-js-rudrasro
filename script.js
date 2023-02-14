@@ -3,18 +3,29 @@ const fullName = document.getElementById("fullName");
 const photo = document.getElementById("photo");
 const additionalInfo = document.getElementById("additionalInfo");
 
-getUserButton.addEventListener("click", function() {
-  fetch("https://randomuser.me/api/")
-    .then(response => response.json())
-    .then(data => {
-      const user = data.results[0];
-      fullName.innerText = user.name.first + " " + user.name.last;
-      photo.src = user. picture.large;
+getUserButton.addEventListener("click", async function() {
+	const response = await fetch("https://randomuser.me/api/");
+	if(response){
+		const data = await response.json();
+		const user = data.results[0];
+	    fullName.innerText = user.name.first + " " + user.name.last;
+	    photo.src = user. picture.large;
       fullName.dataset.age = user.dob.age;
       fullName.dataset.email = user.email;
       fullName.dataset.phone = user.phone;
       additionalInfo.innerText = "";
-    });
+	}
+  // fetch("https://randomuser.me/api/")
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     const user = data.results[0];
+  //     fullName.innerText = user.name.first + " " + user.name.last;
+  //     photo.src = user. picture.large;
+  //     fullName.dataset.age = user.dob.age;
+  //     fullName.dataset.email = user.email;
+  //     fullName.dataset.phone = user.phone;
+  //     additionalInfo.innerText = "";
+  //   });
 });
 
 const ageButton = document.querySelector('[data-attr="age"]');
